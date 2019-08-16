@@ -8,14 +8,15 @@
     <Authors>diystring</Authors>
     <Owners>Arnoldas Gudas</Owners>
     <PackageLicenseUrl>https://github.com/stulzq/Hangfire.MySql.Core/blob/master/License.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/stulzq/Hangfire.MySql.Core</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/diystring/Hangfire.MySql.Core.git</PackageProjectUrl>
     <Copyright>Copyright 2017-2019</Copyright>
     <PackageTags>Hangfire MySql Hangfire.MySql Hangfire.MySql.Core</PackageTags>
     <Version>2.2.6</Version>
     <AssemblyName>Hangfire.MySql.Core</AssemblyName>
     <RootNamespace>Hangfire.MySql.Core</RootNamespace>
     <PackageReleaseNotes>1.SQL script default encoding set to uft8mb4
-2.Support table prefix</PackageReleaseNotes>
+2.Support table prefix
+3.修改默认mysql链接组件为 mysql.data 解决原组件与 项目组件冲突问题</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Install.sql" />
