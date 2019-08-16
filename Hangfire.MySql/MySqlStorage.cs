@@ -46,6 +46,18 @@ namespace Hangfire.MySql.Core
                 //        connectionString += "IgnoreCommandTransaction=true;";
                 //    }
                 //}
+
+                if (!connectionString.ToLower().Contains("allowuservariables"))
+                {
+                    if (connectionString.Last() != ';')
+                    {
+                        connectionString += ";allowuservariables=true;";
+                    }
+                    else
+                    {
+                        connectionString += "allowuservariables=true;";
+                    }
+                }
                 _connectionString = connectionString;
             }
             else
