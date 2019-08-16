@@ -17,6 +17,7 @@ namespace Hangfire.MySql.Core
             DashboardJobListLimit = 50000;
             TransactionTimeout = TimeSpan.FromMinutes(1);
             InvisibilityTimeout = TimeSpan.FromMinutes(30);
+            TablePrefix = "Hangfire";
         }
 
         public IsolationLevel? TransactionIsolationLevel { get; set; }

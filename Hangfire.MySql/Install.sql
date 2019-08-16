@@ -11,7 +11,7 @@ CREATE TABLE `<tableprefix>_Job` (
   `ExpireAt` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `IX_Job_StateName` (`StateName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 
 -- ----------------------------
@@ -24,7 +24,7 @@ CREATE TABLE `<tableprefix>_Counter` (
   `ExpireAt` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `IX_Counter_Key` (`Key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE `<tableprefix>_AggregatedCounter` (
@@ -34,7 +34,7 @@ CREATE TABLE `<tableprefix>_AggregatedCounter` (
 	ExpireAt datetime DEFAULT NULL,
 	PRIMARY KEY (`Id`),
 	UNIQUE KEY `IX_CounterAggregated_Key` (`Key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 
 -- ----------------------------
@@ -43,7 +43,7 @@ CREATE TABLE `<tableprefix>_AggregatedCounter` (
 CREATE TABLE `<tableprefix>_DistributedLock` (
   `Resource` varchar(100) NOT NULL,
   `CreatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 
 -- ----------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `<tableprefix>_Hash` (
   `ExpireAt` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `IX_Hash_Key_Field` (`Key`,`Field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 
 -- ----------------------------
@@ -72,7 +72,7 @@ CREATE TABLE `<tableprefix>_JobParameter` (
   PRIMARY KEY (`Id`),
   CONSTRAINT `IX_JobParameter_JobId_Name` UNIQUE (`JobId`,`Name`),
   KEY `FK_JobParameter_Job` (`JobId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for `JobQueue`
@@ -86,7 +86,7 @@ CREATE TABLE `<tableprefix>_JobQueue` (
   
   PRIMARY KEY (`Id`),
   INDEX `IX_JobQueue_QueueAndFetchedAt` (`Queue`,`FetchedAt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for `JobState`
@@ -100,7 +100,7 @@ CREATE TABLE `<tableprefix>_JobState` (
   `Data` longtext,
   PRIMARY KEY (`Id`),
   KEY `FK_JobState_Job` (`JobId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for `Server`
@@ -110,22 +110,21 @@ CREATE TABLE `<tableprefix>_Server` (
   `Data` longtext NOT NULL,
   `LastHeartbeat` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARSET=utf8mb4;
 
 
 -- ----------------------------
 -- Table structure for `Set`
 -- ----------------------------
 CREATE TABLE `<tableprefix>_Set` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Key` varchar(100) NOT NULL,
-  `Value` varchar(256) NOT NULL,
-  `Score` float NOT NULL,
-  `ExpireAt` datetime DEFAULT NULL,
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `Key` VARCHAR(100) NOT NULL,
+  `Value` VARCHAR(256) NOT NULL,
+  `Score` FLOAT NOT NULL,
+  `ExpireAt` DATETIME DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `IX_Set_Key_Value` (`Key`,`Value`)
-) ENGINE=InnoDB  CHARSET=utf8mb4;
-
+  UNIQUE KEY `IX_Set_K_V` (`Key`,`Value`)
+) ENGINE=INNODB CHARSET=latin1;
 
 
 CREATE TABLE `<tableprefix>_State`
@@ -138,7 +137,7 @@ CREATE TABLE `<tableprefix>_State`
 	Data longtext NULL,
 	PRIMARY KEY (`Id`),
 	KEY `FK_HangFire_State_Job` (`JobId`)
-) ENGINE=InnoDB  CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC CHARSET=utf8mb4;
 
 CREATE TABLE `<tableprefix>_List`
 (
@@ -147,4 +146,4 @@ CREATE TABLE `<tableprefix>_List`
 	`Value` longtext NULL,
 	`ExpireAt` datetime NULL,
 	PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  CHARSET=utf8mb4;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC CHARSET=utf8mb4;
